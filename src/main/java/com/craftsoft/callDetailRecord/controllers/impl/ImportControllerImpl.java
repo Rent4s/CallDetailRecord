@@ -6,6 +6,7 @@ import com.craftsoft.callDetailRecord.services.CallRecordService;
 import com.craftsoft.callDetailRecord.services.ImportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.util.List;
@@ -20,8 +21,9 @@ public class ImportControllerImpl implements ImportController {
     private CallRecordService callRecordService;
 
     @Override
-    public List<CallRecordDetails> importCallRecordDetailsList(File file, String fileUrl) {
-        var callRecordDetailsList = importService.loadObjectList(CallRecordDetails.class,file, fileUrl, ',');
+    public List<CallRecordDetails> importCallRecordDetailsList(MultipartFile file, String fileUrl) throws Exception {
+        var delimiter = ',';
+        var callRecordDetailsList = importService.loadObjectList(CallRecordDetails.class,file, fileUrl, delimiter);
         return callRecordService.save(callRecordDetailsList);
     }
 }
