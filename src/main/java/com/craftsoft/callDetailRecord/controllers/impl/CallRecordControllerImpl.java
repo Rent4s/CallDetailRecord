@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 public class CallRecordControllerImpl implements CallRecordController {
@@ -23,5 +24,15 @@ public class CallRecordControllerImpl implements CallRecordController {
     @Override
     public List<CallRecordDetails> list(CallRecordFilter filter) {
         return service.list(filter);
+    }
+
+    @Override
+    public CallRecordDetails get(UUID uuid) {
+        return service.get(uuid);
+    }
+
+    @Override
+    public void delete(UUID uuid) {
+        service.delete(uuid);
     }
 }

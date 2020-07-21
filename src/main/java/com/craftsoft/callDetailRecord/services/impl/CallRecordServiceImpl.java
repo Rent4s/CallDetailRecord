@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -30,5 +31,16 @@ public class CallRecordServiceImpl implements CallRecordService {
         var callRecordList = repository.list(filter);
         var callRecordsDetailsList =  callRecordList.stream().map(CallRecordUtils::toDetails).collect(Collectors.toList());
         return callRecordsDetailsList;
+    }
+
+    @Override
+    public CallRecordDetails get(UUID uuid) {
+        var callRecord = repository.findById(uuid).orElse(null);
+        return callRecord != null ? CallRecordUtils.toDetails(callRecord) : null;
+    }
+
+    @Override
+    public void delete(UUID uuid) {
+        repository.deleteById(uuid);
     }
 }
