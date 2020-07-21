@@ -1,6 +1,7 @@
 package com.craftsoft.callDetailRecord.services.impl;
 
 import com.craftsoft.callDetailRecord.details.CallRecordDetails;
+import com.craftsoft.callDetailRecord.details.CallRecordFilter;
 import com.craftsoft.callDetailRecord.repositories.CallRecordRepository;
 import com.craftsoft.callDetailRecord.services.CallRecordService;
 import com.craftsoft.callDetailRecord.utils.CallRecordUtils;
@@ -20,6 +21,14 @@ public class CallRecordServiceImpl implements CallRecordService {
     public List<CallRecordDetails> save(List<CallRecordDetails> detailsList) {
         var callRecordList = detailsList.stream().map(CallRecordUtils::toEntity).collect(Collectors.toList());
         callRecordList = repository.saveAll(callRecordList);
-        return callRecordList.stream().map(CallRecordUtils::toDetails).collect(Collectors.toList());
+        var callRecordDetailsList = callRecordList.stream().map(CallRecordUtils::toDetails).collect(Collectors.toList());
+        return callRecordDetailsList;
+    }
+
+    @Override
+    public List<CallRecordDetails> list(CallRecordFilter filter) {
+        var callRecordList = repository.list(filter);
+        var callRecordsDetailsList =  callRecordList.stream().map(CallRecordUtils::toDetails).collect(Collectors.toList());
+        return callRecordsDetailsList;
     }
 }
