@@ -1,5 +1,6 @@
 package com.craftsoft.callDetailRecord.details;
 
+import com.craftsoft.callDetailRecord.details.page.PageFilter;
 import com.craftsoft.callDetailRecord.utils.enums.StatusEnum;
 
 import java.math.BigDecimal;
@@ -7,7 +8,7 @@ import java.sql.Timestamp;
 import java.util.List;
 import java.util.UUID;
 
-public class CallRecordFilter {
+public class CallRecordFilter extends PageFilter {
 
     private List<UUID> uuidList;
     private List<String> accountList;

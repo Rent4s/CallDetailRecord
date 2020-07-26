@@ -3,6 +3,7 @@ package com.craftsoft.callDetailRecord.controllers.impl;
 import com.craftsoft.callDetailRecord.controllers.CallRecordController;
 import com.craftsoft.callDetailRecord.details.CallRecordDetails;
 import com.craftsoft.callDetailRecord.details.CallRecordFilter;
+import com.craftsoft.callDetailRecord.details.page.PagedListWithDetails;
 import com.craftsoft.callDetailRecord.services.CallRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,7 +23,7 @@ public class CallRecordControllerImpl implements CallRecordController {
     }
 
     @Override
-    public List<CallRecordDetails> list(CallRecordFilter filter) {
+    public PagedListWithDetails<CallRecordDetails> list(CallRecordFilter filter) {
         return service.list(filter);
     }
 

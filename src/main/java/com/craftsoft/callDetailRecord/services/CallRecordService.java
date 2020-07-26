@@ -2,7 +2,7 @@ package com.craftsoft.callDetailRecord.services;
 
 import com.craftsoft.callDetailRecord.details.CallRecordDetails;
 import com.craftsoft.callDetailRecord.details.CallRecordFilter;
-import org.springframework.web.bind.annotation.RequestBody;
+import com.craftsoft.callDetailRecord.details.page.PagedListWithDetails;
 
 import java.util.List;
 import java.util.UUID;
@@ -11,7 +11,7 @@ public interface CallRecordService {
 
     List<CallRecordDetails> save(List<CallRecordDetails> detailsList);
 
-    List<CallRecordDetails> list(CallRecordFilter filter);
+    PagedListWithDetails<CallRecordDetails> list(CallRecordFilter filter);
 
     CallRecordDetails get(UUID uuid);
 
