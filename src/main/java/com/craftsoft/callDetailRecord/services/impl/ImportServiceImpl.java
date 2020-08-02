@@ -16,7 +16,9 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -35,8 +37,9 @@ public class ImportServiceImpl implements ImportService {
             return readValues.readAll();
     }
 
-    private byte[] validate(MultipartFile file, String fileUrl) throws IOException {
+    private byte[] validate(MultipartFile file, String fileUrl) throws IOException, URISyntaxException {
         if (file == null && StringUtils.isEmpty(fileUrl)){
+            logger.error(ExceptionMessage.IMPORT_NO_FILE);
             throw new RuntimeException(ExceptionMessage.IMPORT_NO_FILE);
         }
         return file == null ? IOUtils.toByteArray(new URL(fileUrl)) : file.getBytes();

@@ -4,5 +4,6 @@ public class RestUrl {
     public static final String importCallRecordDetailsList = "/callRecords/import";
     public static final String callRecords = "/callRecords";
     public static final String callRecordByUuid = "/callRecord/{uuid}";
+    public static final String averageCallCost = "/callRecords/average/cost";
 }
 

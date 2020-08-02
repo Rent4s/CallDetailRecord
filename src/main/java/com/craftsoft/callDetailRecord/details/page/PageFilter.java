@@ -1,6 +1,5 @@
 package com.craftsoft.callDetailRecord.details.page;
 
-import com.craftsoft.callDetailRecord.utils.enums.SortingOrderEnum;
 import org.springframework.data.domain.Sort;
 
 import java.util.List;

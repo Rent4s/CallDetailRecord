@@ -2,6 +2,8 @@ package com.craftsoft.callDetailRecord.details;
 
 import com.craftsoft.callDetailRecord.details.page.PageFilter;
 import com.craftsoft.callDetailRecord.utils.enums.StatusEnum;
+import org.springframework.data.domain.Sort;
+
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
@@ -21,7 +23,8 @@ public class CallRecordFilter extends PageFilter {
     private BigDecimal costPerMinuteFrom;
     private BigDecimal costPerMinuteTo;
 
-    public CallRecordFilter(List<String> accountList, List<String> destinationList, Timestamp startDateFrom, Timestamp startDateTo, Timestamp endDateFrom, Timestamp endDateTo, List<StatusEnum> statusList, List<UUID> uuidList, BigDecimal costPerMinuteFrom, BigDecimal costPerMinuteTo) {
+    public CallRecordFilter(Integer page, Integer pageSize, String orderBy, Sort.Direction direction, List<Sort.Order> sortingOrderList, List<String> accountList, List<String> destinationList, Timestamp startDateFrom, Timestamp startDateTo, Timestamp endDateFrom, Timestamp endDateTo, List<StatusEnum> statusList, List<UUID> uuidList, BigDecimal costPerMinuteFrom, BigDecimal costPerMinuteTo) {
+        super(page, pageSize, orderBy, direction, sortingOrderList);
         this.accountList = accountList;
         this.destinationList = destinationList;
         this.startDateFrom = startDateFrom;
@@ -35,6 +38,8 @@ public class CallRecordFilter extends PageFilter {
     }
 
     protected CallRecordFilter() {
+        setPage(1);
+        setPageSize(10);
     }
 
     public List<String> getAccountList() {

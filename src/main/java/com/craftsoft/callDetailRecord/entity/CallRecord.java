@@ -1,6 +1,8 @@
 package com.craftsoft.callDetailRecord.entity;
 
 import com.craftsoft.callDetailRecord.utils.enums.StatusEnum;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -32,7 +34,9 @@ public class CallRecord {
     }
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GenericGenerator(name = "IdentityGeneratorForExisting", strategy = "com.craftsoft.callDetailRecord.configuration.hibernate.IdentityGeneratorForExisting")
+    @GeneratedValue(generator = "IdentityGeneratorForExisting")
+    @Column(unique = true, nullable = false)
     public UUID getUuid() {
         return uuid;
     }
